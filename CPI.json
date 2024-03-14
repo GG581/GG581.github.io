@@ -1,0 +1,41 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Cases: UK nations",
+    "subtitle": "New cases by publish date, rolling rate",
+    "subtitleFontStyle": "italic",
+    "subtitleFontSize": 10,
+    "anchor": "start",
+    "color": "black"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/GG581/GG581.github.io/main/CPIs.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "fold": ["CPI", "CPIH", "OOH"],
+      "as": ["series", "value"]
+    }
+  ],
+  "height": 600,
+  "width": 600,
+  "mark": {"type": "line", "point": false},
+  "encoding": {
+    "x": {
+      "field": "Date",
+      "type": "temporal",
+      "title": null,
+      "axis": {"grid": false}
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "title": null,
+      "axis": {"grid": false}
+    },
+    "color" : {
+      "field": "series"
+    }
+  }
+}
